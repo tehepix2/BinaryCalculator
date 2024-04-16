@@ -15,10 +15,13 @@ public class Main {
         while (scan.hasNext()) {
             stack.push(scan.next()); 
         }
-        Tree binaryTree = new Tree(new Node(stack.peek(), null, null));
+        stack.peek();
+        Tree binaryTree = new Tree();
+     
         
-        System.out.println("Expression entered: " + exp);
-        System.out.println("Solution: " + stack.peek());
+        System.out.println((String)binaryTree.getHead().getObj());
+        
+       
         input.close();
         scan.close();
     }

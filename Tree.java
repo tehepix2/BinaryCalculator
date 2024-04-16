@@ -6,57 +6,71 @@ public class Tree {
     public Tree (Node head) {
         this.head = head;
     }
+    public Tree () {
+    
+    }
 
     public Node makeTree(Stack<String> stack) {
-        if (stack.size() > 0) {
-            switch (stack.peek()) {
-                case "+":
-                    stack.pop();
-                    this.head = setLeft("+", new Node(makeTree(stack), new Node(makeTree(stack))));
-                    break;
-
-                case "-":
+        Node node;
+        switch (stack.peek()) {
+            case "+":
                 stack.pop();
-                    Double num4 = Double.valueOf(stack.pop());
-                    Double num3 = Double.valueOf(stack.pop());
-                    stack.push(((Double)(num3 - num4)).toString());
-                    break;
+                node = new Node("+", makeTree(stack), makeTree(stack));
+                break;
 
-                case "*":
-                    stack.pop();
-                    Double num6 = Double.valueOf(stack.pop());
-                    Double num5 = Double.valueOf(stack.pop());
-                    stack.push(((Double)(num5 * num6)).toString());
-                    break;
-
-                case "/":
+            case "-":
                 stack.pop();
-                    Double num8 = Double.valueOf(stack.pop());
-                    Double num7 = Double.valueOf(stack.pop());
-                    stack.push(((Double)(num7 / num8)).toString());
-                    break;
+                node = new Node("-", makeTree(stack), makeTree(stack));
+                break;
 
-                case "%":
-                    stack.pop();
-                    Double num10 = Double.valueOf(stack.pop());
-                    Double num9 = Double.valueOf(stack.pop());
-                    stack.push(((Double)(num9 % num10)).toString());
-                    break;
+            case "*":
+                stack.pop();
+                node = new Node("*", makeTree(stack), makeTree(stack));
+                break;
 
-                case "^":
-                    stack.pop();
-                    Double num12 = Double.valueOf(stack.pop());
-                    Double num11 = Double.valueOf(stack.pop());
-                    stack.push(((Math.pow(num11, num12) + ""))); //Turns out doubles can be turned into string by just adding "" to them
-                    break;    
-            }
+            case "/":
+                stack.pop();
+                node = new Node("/", makeTree(stack), makeTree(stack));
+                break;
+
+            case "%":
+                stack.pop();
+                node = new Node("%", makeTree(stack), makeTree(stack));
+                break;
+
+            case "^":
+                stack.pop();
+                node = new Node("^", makeTree(stack), makeTree(stack)); 
+                break;    
+            default:
+                node = new Node(stack.pop(), null, null); 
         }
+        return node;
+            
+        
+        
+    }
+
+    public Double solveTree() {
+        Double num = 0.0;
+
+        return num;
     }
     
-        
-    
-
     public Node getHead() {
         return head;
+    }
+
+    public void setHead(Node head) {
+        this.head = head;
+    }
+  
+
+    public void printTree(Node head) {
+        System.out.println((String)head.getObj());
+        if (head.getLeft() != null) {
+            printTree(head.getLeft());
+            printTree(head.getRight());
+        }
     }
 }
