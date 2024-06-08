@@ -1,12 +1,16 @@
-public class Node {
-    private Object obj;
+class Node {
+    private String head;
     private Node left;
     private Node right;
-
-    public Node(Object name, Node left, Node right) {
-        this.obj = name;
+    
+    public Node(String head, Node left, Node right) {
+        this.head = head;
         this.left = left;
         this.right = right;
+    }
+
+    public String getHead() {
+        return head;
     }
 
     public Node getLeft() {
@@ -17,13 +21,13 @@ public class Node {
         return right;
     }
 
-    public void setLeft(Node thing) {
-        this.left = thing;    
+    public Node setLeft(Node set) {
+        this.left = set;
+        return set;
     }
-    public void setRight(Node thing) {
-        this.right = thing;
-    }
-    public Object getObj() {
-        return obj;
+
+    public Node setRight(Node set) {
+        this.right = set;
+        return set;
     }
 }
